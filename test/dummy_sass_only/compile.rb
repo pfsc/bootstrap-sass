@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'sassc'
-require 'bootstrap-sass'
+require 'bootstrap-3-sass'
 require 'fileutils'
 
 load_path = ARGV[0]

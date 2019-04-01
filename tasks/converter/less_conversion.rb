@@ -1,5 +1,5 @@
 require_relative 'char_string_scanner'
-require 'bootstrap-sass/version'
+require 'bootstrap-3-sass/version'
 
 # This is the script used to automatically convert all of twbs/bootstrap LESS to Sass.
 #
@@ -141,14 +141,14 @@ class Converter
       end
 
       # move bootstrap/_bootstrap.scss to _bootstrap.scss adjusting import paths
-      main_from = "#{save_to}/_bootstrap.scss"
-      main_to   = File.expand_path("#{save_to}/../_bootstrap.scss")
-      save_file main_to, File.read(main_from).gsub(/ "/, ' "bootstrap/')
+      main_from = "#{save_to}/_bootstrap-3.scss"
+      main_to   = File.expand_path("#{save_to}/../_bootstrap-3.scss")
+      save_file main_to, File.read(main_from).gsub(/ "/, ' "bootstrap-3/')
       File.delete(main_from)
 
       # generate variables template
-      save_file 'templates/project/_bootstrap-variables.sass',
-                "// Override Bootstrap variables here (defaults from bootstrap-sass v#{Bootstrap::VERSION}):\n\n" +
+      save_file 'templates/project/_bootstrap-3-variables.sass',
+                "// Override Bootstrap variables here (defaults from bootstrap-sass v#{Bootstrap3::VERSION}):\n\n" +
                     File.read("#{save_to}/_variables.scss").lines[1..-1].join.gsub(/^(?=\$)/, '// ').gsub(/ !default;/, '')
     end
 

@@ -3,7 +3,7 @@
 require 'test_helper'
 require 'shellwords'
 require 'fileutils'
-require 'bootstrap-sass'
+require 'bootstrap-3-sass'
 
 class SassTest < Minitest::Test
   DUMMY_PATH = 'test/dummy_sass_only'
@@ -14,7 +14,7 @@ class SassTest < Minitest::Test
 
   def setup
     FileUtils.rm_rf(File.join(DUMMY_PATH, '.sass-cache'), secure: true)
-    css_path = File.join GEM_PATH, 'tmp/bootstrap-sass-only.css'
+    css_path = File.join GEM_PATH, 'tmp/bootstrap-3-sass-only.css'
     success  = Dir.chdir DUMMY_PATH do
       silence_stdout_if !ENV['VERBOSE'] do
         Bundler.with_original_env do

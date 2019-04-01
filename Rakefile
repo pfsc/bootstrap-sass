@@ -45,15 +45,15 @@ end
 desc 'Dumps output to a CSS file for testing'
 task :debug do
   require 'sassc'
-  require 'bootstrap-sass'
-  path = Bootstrap.stylesheets_path
-  %w(_bootstrap).each do |file|
+  require 'bootstrap-3-sass'
+  path = Bootstrap3.stylesheets_path
+  %w(_bootstrap-3).each do |file|
     engine = SassC::Engine.new(File.read("#{path}/#{file}.scss"), syntax: :scss, load_paths: ['.', path])
     File.open("tmp/#{file}.css", 'w') { |f| f.write(engine.render) }
   end
 end
 
-desc 'Convert bootstrap to bootstrap-sass'
+desc 'Convert bootstrap-3 to bootstrap-3-sass'
 task :convert, :branch do |t, args|
   require './tasks/converter'
   Converter.new(branch: args[:branch]).process_bootstrap
@@ -65,17 +65,17 @@ task :less_to_scss, :branch do |t, args|
   puts Converter.new(branch: args[:branch]).convert_less(STDIN.read)
 end
 
-desc 'Compile bootstrap-sass to tmp/ (or first arg)'
+desc 'Compile bootstrap-3-sass to tmp/ (or first arg)'
 task :compile, :css_path do |t, args|
   require 'sassc'
-  require 'bootstrap-sass'
+  require 'bootstrap-3-sass'
   require 'term/ansicolor'
 
   path = 'assets/stylesheets'
   css_path = args.with_defaults(css_path: 'tmp')[:css_path]
   puts Term::ANSIColor.bold "Compiling SCSS in #{path}"
   Dir.mkdir(css_path) unless File.directory?(css_path)
-  %w(_bootstrap bootstrap/_theme).each do |file|
+  %w(_bootstrap-3 bootstrap-3/_theme).each do |file|
     save_path = "#{css_path}/#{file.sub(/(^|\/)?_+/, '\1').sub('/', '-')}.css"
     puts Term::ANSIColor.cyan("  #{save_path}") + '...'
     engine = SassC::Engine.new(File.read("#{path}/#{file}.scss"), syntax: :scss, load_paths: ['.', path])

@@ -4,12 +4,12 @@ require 'sassc'
 
 class CompilationTest < Minitest::Test
   def test_compilation_bootstrap
-    compile 'bootstrap'
+    compile 'bootstrap-3'
     assert true # nothing was raised
   end
 
   def test_compilation_bootstrap_theme
-    compile 'bootstrap/theme'
+    compile 'bootstrap-3/theme'
     assert true # nothing was raised
   end
 
