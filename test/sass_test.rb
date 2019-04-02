@@ -19,7 +19,7 @@ class SassTest < Minitest::Test
       silence_stdout_if !ENV['VERBOSE'] do
         Bundler.with_original_env do
           system('bundle') && system('bundle', 'exec', 'ruby', 'compile.rb',
-                                     Bootstrap.stylesheets_path, css_path)
+                                     Bootstrap3.stylesheets_path, css_path)
         end
       end
     end

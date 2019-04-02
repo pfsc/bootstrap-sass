@@ -88,4 +88,4 @@ module Bootstrap3
   end
 end
 
-Bootstrap.load!
+Bootstrap3.load!
